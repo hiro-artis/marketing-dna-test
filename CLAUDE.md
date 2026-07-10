@@ -43,3 +43,20 @@ GASデプロイURL（`https://script.google.com/macros/s/XXXX/exec`）は「ア�
 - docs/requirements.md（要件定義）
 - docs/DEPLOYMENT.md（デプロイ情報）
 上記以外のドキュメント作成はユーザー許諾が必要。
+
+## Git/CI設定
+
+### 品質ゲート
+本プロジェクトはビルドツールを持たないため、GitHub Actions等の自動CIは設けない。品質は目視レビューで担保する（上記「コード品質」節を参照）。
+
+### ローカルフック（`.git/hooks/`）
+- `prepare-commit-msg`: コミットメッセージ冒頭に日時を自動追加
+- `pre-commit`: `.env`系・秘密鍵ファイルがstageされていた場合コミットを中止
+
+### ブランチ戦略
+- `main`: 本番（GitHub Pages公開ブランチ）。force push・削除を禁止（branch protection）
+- `develop`: 開発統合ブランチ
+
+### リポジトリ
+- URL: https://github.com/hiro-artis/marketing-dna-test
+- 公開設定: Private
