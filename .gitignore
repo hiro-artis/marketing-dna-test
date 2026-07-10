@@ -1,0 +1,20 @@
+# Environment variables（機密情報保護）
+.env
+.env.local
+.env.production
+.env*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# AppGenius temp
+.appgenius_temp/
+
+# Logs
+*.log

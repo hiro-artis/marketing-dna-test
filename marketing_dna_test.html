@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Marketing DNA Test™ — あなたの売れ方診断</title>
+<meta name="description" content="6因子30問+6問の能力テストで、15タイプから「あなたの売れ方」を診断します。" />
+<meta property="og:title" content="Marketing DNA Test™" />
+<meta property="og:description" content="あなたの「売れ方」を、科学で診断する。" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --paper: #f1ebde;
+  --paper-deep: #e9e1ce;
+  --paper-soft: #f6f1e6;
+  --ink: #1a1612;
+  --ink-soft: #3a342c;
+  --ink-faint: #6b6356;
+  --rule: #c9bfa8;
+  --rule-faint: #d8cfb9;
+  --accent: #b8451f;       /* warm terracotta */
+  --accent-deep: #8a3216;
+  --gold: #a8884a;
+  --indigo: #2c3a52;
+  --shadow: rgba(26, 22, 18, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { background: var(--paper); color: var(--ink); }
+body {
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(168,136,74,0.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(184,69,31,0.04) 0%, transparent 50%);
+  overflow-x: hidden;
+}
+
+/* Subtle paper grain */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+}
+
+.serif { font-family: "Noto Serif JP", "Cormorant Garamond", serif; }
+.mono { font-family: "JetBrains Mono", monospace; letter-spacing: 0.05em; }
+.latin { font-family: "Cormorant Garamond", serif; font-style: italic; }
+
+#app {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+  min-height: 100vh;
+}
+
+/* === HEADER (per screen) === */
+.brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+.brand-mark {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.brand-mark .dot { color: var(--accent); }
+.brand-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+/* === COMMON === */
+.fade-in { animation: fadeIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.slide-in { animation: slideIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: none; } }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: var(--ink);
+  color: var(--paper-soft);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover { background: var(--accent-deep); transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn:disabled { background: var(--ink-faint); cursor: not-allowed; opacity: 0.5; }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  padding: 14px 24px;
+}
+.btn-ghost:hover { background: var(--paper-deep); border-color: var(--ink); }
+
+.btn-arrow::after {
+  content: '→';
+  font-family: "Cormorant Garamond", serif;
+  font-style: normal;
+  font-size: 18px;
+  margin-left: 4px;
+  transition: transform 0.3s;
+}
+.btn:hover .btn-arrow::after { transform: translateX(4px); }
+
+/* === WELCOME SCREEN === */
+.welcome {
+  text-align: left;
+  padding-top: 12vh;
+}
+.welcome-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.welcome-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+.welcome-title {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 900;
+  font-size: clamp(40px, 9vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.welcome-title .latin {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(28px, 6vw, 44px);
+  color: var(--ink-soft);
+  margin-top: 12px;
+  letter-spacing: 0;
+}
+.welcome-tag {
+  font-family: "Noto Serif JP", serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin: 28px 0 40px;
+  max-width: 480px;
+  line-height: 1.9;
+}
+.welcome-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 32px 0 48px;
+  padding: 24px 0;
+  border-top: 1px solid var(--rule-faint);
+  border-bottom: 1px solid var(--rule-faint);
+}
+.welcome-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.welcome-meta-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.welcome-meta-value {
+  font-family: "Noto Serif JP", serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.welcome-meta-value .small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  margin-left: 4px;
+}
+.welcome-note {
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-top: 20px;
+  line-height: 1.7;
+}
+
+/* === PROGRESS === */
+.progress-wrap {
+  margin-bottom: 40px;
+}
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.progress-info .factor-label { color: var(--accent); font-weight: 500; }
+.progress-bar {
+  height: 1px;
+  background: var(--rule-faint);
+  position: relative;
+  overflow: hidden;
+}
+.progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* === QUESTION SCREEN === */
+.question-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 80px;
+  font-weight: 400;
+  color: var(--rule);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.question-num .total {
+  font-size: 24px;
+  color: var(--ink-faint);
+  margin-left: 4px;
+}
+.question-text {
+  font-family: "Noto Serif JP", serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  margin: 16px 0 48px;
+  color: var(--ink);
+}
+.question-text-small {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* Likert scale */
+.likert {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.likert-option {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule-faint);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.likert-option:hover { border-color: var(--ink-soft); background: var(--paper-deep); }
+.likert-option.selected {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper-soft);
+}
+.likert-option.selected .likert-num { color: var(--paper-soft); border-color: var(--paper-soft); }
+.likert-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 22px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink-faint);
+  border-radius: 50%;
+  color: var(--ink-soft);
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+.likert-label {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* Choice (ability test) */
+.choice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.choice-option {
+  display: flex;
+  gap: 16px;
+  padding: 20px 22px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule-faint);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+}
+.choice-option:hover { border-color: var(--ink-soft); background: var(--paper-deep); }
+.choice-option.selected { border-color: var(--ink); background: var(--ink); color: var(--paper-soft); }
+.choice-option.selected .choice-letter { background: var(--accent); color: var(--paper-soft); border-color: var(--accent); }
+.choice-letter {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+.choice-text {
+  font-size: 15px;
+  line-height: 1.7;
+  flex: 1;
+}
+
+/* Navigation */
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+.nav-back {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+.nav-back:hover { color: var(--ink); }
+.nav-back::before { content: '←'; font-family: serif; font-size: 16px; }
+.nav-back:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* === SECTION DIVIDER === */
+.section-intro {
+  padding: 48px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+.section-intro-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-intro-title {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.section-intro-desc {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  max-width: 480px;
+}
+
+/* === RESULT SCREEN === */
+.result-hero {
+  padding: 24px 0 40px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+.result-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.result-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+.result-code {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(120px, 28vw, 200px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin: 8px 0 0;
+}
+.result-name {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: clamp(28px, 6vw, 40px);
+  line-height: 1.3;
+  margin-top: 16px;
+  color: var(--ink);
+}
+.result-catch {
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+  margin-top: 12px;
+  letter-spacing: 0.02em;
+}
+.result-catch::before { content: '「'; }
+.result-catch::after { content: '」'; }
+
+/* Score chart */
+.scores {
+  margin: 40px 0;
+  padding: 28px 0;
+  border-top: 1px solid var(--rule-faint);
+  border-bottom: 1px solid var(--rule-faint);
+}
+.scores-title {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.score-row {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dotted var(--rule-faint);
+}
+.score-row:last-child { border-bottom: none; }
+.score-row.top {
+  background: var(--paper-deep);
+  margin: 0 -16px;
+  padding: 12px 16px;
+  border-radius: 0;
+  border-bottom: 1px solid var(--rule);
+}
+.score-letter {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+}
+.score-row.top .score-letter { color: var(--accent); }
+.score-info { display: flex; flex-direction: column; gap: 6px; }
+.score-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.score-poles {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+.score-bar {
+  height: 4px;
+  background: var(--rule-faint);
+  position: relative;
+  margin-top: 4px;
+  width: 100%;
+}
+.score-bar-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ink-soft);
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.score-row.top .score-bar-fill { background: var(--accent); }
+.score-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Detail blocks */
+.detail-block {
+  margin-bottom: 36px;
+}
+.detail-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.detail-label::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: var(--accent);
+}
+.detail-text {
+  font-family: "Noto Serif JP", serif;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--ink);
+}
+.detail-list {
+  list-style: none;
+  padding: 0;
+}
+.detail-list li {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  padding: 8px 0 8px 24px;
+  position: relative;
+  border-bottom: 1px dotted var(--rule-faint);
+}
+.detail-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+.detail-list li:last-child { border-bottom: none; }
+
+.dual-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-bottom: 36px;
+}
+@media (min-width: 600px) {
+  .dual-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+.dual-block { padding: 0; }
+.dual-block.weak .detail-label { color: var(--ink-faint); }
+.dual-block.weak .detail-label::before { background: var(--ink-faint); }
+.dual-text {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+
+/* Strategy steps */
+.strategy {
+  margin: 40px 0;
+  padding: 32px 24px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  position: relative;
+}
+.strategy-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.strategy-title {
+  font-family: "Noto Serif JP", serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  letter-spacing: 0.01em;
+}
+.step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid var(--rule-faint);
+}
+.step:first-of-type { border-top: 1px solid var(--rule); }
+.step-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+.step-content { padding-top: 4px; }
+.step-title {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.step-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+/* Share area */
+.share {
+  margin: 56px 0 32px;
+  padding: 32px 24px;
+  background: var(--ink);
+  color: var(--paper-soft);
+  text-align: center;
+  position: relative;
+}
+.share-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.share-title {
+  font-family: "Noto Serif JP", serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.share-desc {
+  font-size: 13px;
+  color: rgba(241, 235, 222, 0.7);
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.share-btn {
+  padding: 12px 20px;
+  background: rgba(241, 235, 222, 0.1);
+  border: 1px solid rgba(241, 235, 222, 0.3);
+  color: var(--paper-soft);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.share-btn:hover {
+  background: rgba(241, 235, 222, 0.2);
+  border-color: var(--gold);
+}
+.share-btn.copied { background: var(--accent); border-color: var(--accent); }
+
+.restart-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+.restart-btn {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  padding: 12px 16px;
+  border: 1px solid var(--rule-faint);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.restart-btn:hover { color: var(--ink); border-color: var(--ink); }
+
+/* Footer */
+.footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule-faint);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  text-align: center;
+  line-height: 1.8;
+}
+.footer .latin { font-family: "Cormorant Garamond", serif; font-style: italic; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--ink);
+  color: var(--paper-soft);
+  padding: 14px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  border-radius: 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Hidden screens */
+.screen { display: none; }
+.screen.active { display: block; }
+
+@media (max-width: 480px) {
+  #app { padding: 24px 18px 64px; }
+  .question-num { font-size: 64px; }
+  .question-text { font-size: 19px; }
+  .strategy { padding: 24px 18px; margin-left: -18px; margin-right: -18px; }
+  .share { margin-left: -18px; margin-right: -18px; padding: 28px 18px; }
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <header class="brand-bar">
+    <div class="brand-mark">Marketing DNA Test<span class="dot">.</span></div>
+    <div class="brand-meta">v2.0 / Japan</div>
+  </header>
+
+  <!-- ============= WELCOME ============= -->
+  <section id="screen-welcome" class="screen active">
+    <div class="welcome fade-in">
+      <div class="welcome-eyebrow">あなたの売れ方を、科学する</div>
+      <h1 class="welcome-title">
+        売れ方は、<br>生まれ持った<br>DNA で決まる。
+        <span class="latin">— Discover your selling DNA.</span>
+      </h1>
+      <p class="welcome-tag">
+        マーケティングの「正解」は、ひとつではありません。<br>
+        この診断は、あなたが持って生まれた「売れ方の型」を、6つの因子から導き出します。
+      </p>
+
+      <div class="welcome-meta">
+        <div class="welcome-meta-item">
+          <span class="welcome-meta-label">Questions</span>
+          <span class="welcome-meta-value">36<span class="small">問</span></span>
+        </div>
+        <div class="welcome-meta-item">
+          <span class="welcome-meta-label">Factors</span>
+          <span class="welcome-meta-value">6<span class="small">因子</span></span>
+        </div>
+        <div class="welcome-meta-item">
+          <span class="welcome-meta-label">Types</span>
+          <span class="welcome-meta-value">15<span class="small">タイプ</span></span>
+        </div>
+        <div class="welcome-meta-item">
+          <span class="welcome-meta-label">Time</span>
+          <span class="welcome-meta-value">7<span class="small">分</span></span>
+        </div>
+      </div>
+
+      <button class="btn btn-arrow" onclick="startTest()">
+        診断をはじめる
+      </button>
+
+      <p class="welcome-note">
+        ※ 5段階評価の30問と、4択の能力テスト6問、合計36問にお答えいただきます。<br>
+        ※ 直感で、お答えください。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============= LIKERT SURVEY (30問) ============= -->
+  <section id="screen-likert" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span><span id="likert-current">1</span> / 30</span>
+        <span class="factor-label" id="likert-factor">A · 表現スタイル</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="likert-progress"></div></div>
+    </div>
+
+    <div id="likert-content"></div>
+
+    <div class="nav-row">
+      <button class="nav-back" id="likert-back" onclick="likertBack()">前の質問</button>
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ============= ABILITY TEST INTRO ============= -->
+  <section id="screen-ability-intro" class="screen">
+    <div class="section-intro fade-in">
+      <div class="section-intro-eyebrow">Part 2 / Capability Check</div>
+      <h2 class="section-intro-title">
+        次は、能力テストです。
+      </h2>
+      <p class="section-intro-desc">
+        6つのシチュエーションで、あなたが「最も自然にできる」「成果を出せそう」と感じる行動を、A〜Dから1つ選んでください。
+      </p>
+    </div>
+    <button class="btn btn-arrow" onclick="startAbility()">能力テストへ進む</button>
+  </section>
+
+  <!-- ============= ABILITY TEST ============= -->
+  <section id="screen-ability" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span><span id="ability-current">1</span> / 6</span>
+        <span class="factor-label" id="ability-factor">A · 表現スタイル</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="ability-progress"></div></div>
+    </div>
+
+    <div id="ability-content"></div>
+
+    <div class="nav-row">
+      <button class="nav-back" id="ability-back" onclick="abilityBack()">前の問題</button>
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ============= RESULT ============= -->
+  <section id="screen-result" class="screen">
+    <div id="result-content"></div>
+  </section>
+
+  <footer class="footer">
+    Marketing DNA Test™ v2.0 — Business Science Japan &amp; <span class="latin">Takanori Endo</span><br>
+    © 2026 All Rights Reserved
+  </footer>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+/* ============================================================
+   DATA: 30 Likert questions
+   ============================================================ */
+const FACTORS = {
+  A: { name: '表現スタイル', poles: 'Analytical ↔ Creative' },
+  B: { name: 'コミュニケーション', poles: 'One-way ↔ Dialogue' },
+  C: { name: '時間感覚', poles: 'Short-term ↔ Long-term' },
+  D: { name: '信頼形成', poles: 'Authority ↔ Empathy' },
+  E: { name: 'コンテンツ嗜好', poles: 'Visual/Text ↔ Audio/Experience' },
+  F: { name: '動機', poles: 'Influence ↔ Contribution' },
+};
+
+const LIKERT_LABELS = [
+  'まったくあてはまらない',
+  'あまりあてはまらない',
+  'どちらともいえない',
+  'ややあてはまる',
+  '非常にあてはまる',
+];
+
+// Each: { q: text, factor, reverse }
+const LIKERT = [
+  { factor: 'A', q: '人に説明するとき、数字やデータを使うことが多い', reverse: false },
+  { factor: 'A', q: '思いつきのアイデアよりも、過去の成功事例を参考にして企画を立てる', reverse: false },
+  { factor: 'A', q: '文章を書くとき、箇条書きを使って論理的に整理するのが得意だ', reverse: false },
+  { factor: 'A', q: '感情に訴えかけるような、ストーリー性のある文章を書くのが好きだ', reverse: true },
+  { factor: 'A', q: '既存の枠組みにとらわれず、誰も思いつかないような斬新な企画を考えるのが得意だ', reverse: true },
+
+  { factor: 'B', q: '大勢の前で一方的にプレゼンするよりも、1対1で深く話す方が得意だ', reverse: true },
+  { factor: 'B', q: '自分の意見をSNSやブログで広く発信し、多くの人に影響を与えたい', reverse: false },
+  { factor: 'B', q: '顧客からの個別の質問に一つずつ丁寧に答えるよりも、よくある質問(FAQ)にまとめて効率化したい', reverse: false },
+  { factor: 'B', q: '顧客同士が交流できるような、コミュニティやサロンを運営するのに向いていると思う', reverse: true },
+  { factor: 'B', q: '自分の考えをカリスマ的に語り、ファンを引っ張っていくようなスタイルに憧れる', reverse: false },
+
+  { factor: 'C', q: '短期間で一気に売上を作るキャンペーンやローンチ企画を考えるのが好きだ', reverse: false },
+  { factor: 'C', q: '結果が出るまでに時間がかかる施策よりも、即効性のある広告やプロモーションを好む', reverse: false },
+  { factor: 'C', q: '流行やトレンドに素早く乗って、新しい商品を展開するのが得意だ', reverse: false },
+  { factor: 'C', q: '何年もかけてじっくりとブランドを育てていくようなビジネスモデルが好きだ', reverse: true },
+  { factor: 'C', q: '一時的な大きな売上よりも、毎月安定した少額の収入(サブスクリプションなど)を積み上げたい', reverse: true },
+
+  { factor: 'D', q: '自分の専門性や肩書き、圧倒的な実績を前面に出してビジネスをしたい', reverse: false },
+  { factor: 'D', q: '顧客からは「すごい人」「先生」として見られ、指導する立場でありたい', reverse: false },
+  { factor: 'D', q: '自分の弱みや失敗談を公開するよりも、常に完璧でプロフェッショナルな姿を見せたい', reverse: false },
+  { factor: 'D', q: '顧客と同じ目線に立ち、共感を通じて「親しみやすい相談相手」になりたい', reverse: true },
+  { factor: 'D', q: '自分の成功体験だけでなく、現在進行形の苦労やプロセスを共有して応援されたい', reverse: true },
+
+  { factor: 'E', q: '情報を伝えるときは、音声や動画よりも、整理された文章や図解を使いたい', reverse: false },
+  { factor: 'E', q: 'ブログ記事や書籍、LP(ランディングページ)など、文字中心のコンテンツを作るのが得意だ', reverse: false },
+  { factor: 'E', q: 'デザインがきれいに整っている資料やウェブサイトを見るとテンションが上がる', reverse: false },
+  { factor: 'E', q: '文章を書くよりも、カメラの前で話したり、ポッドキャストで音声を配信する方が楽だ', reverse: true },
+  { factor: 'E', q: 'オンラインのテキストのやり取りよりも、実際のセミナーやイベントで直接体験を届けるのが好きだ', reverse: true },
+
+  { factor: 'F', q: '業界の常識を変えたり、市場に大きなインパクトを与えたいという欲求が強い', reverse: false },
+  { factor: 'F', q: '多くの人を動かし、自分のビジョンに巻き込んでいくことにやりがいを感じる', reverse: false },
+  { factor: 'F', q: 'ビジネスを大きくスケール(拡大)させて、業界のトップを目指したい', reverse: false },
+  { factor: 'F', q: '目の前で困っている人を、自分の手で直接助けることに最も喜びを感じる', reverse: true },
+  { factor: 'F', q: '規模を大きくするよりも、少数の深い関係性の顧客に徹底的に貢献したい', reverse: true },
+];
+
+/* ============================================================
+   ABILITY TEST (6 questions, 4 choices A-D)
+   Each choice maps to one factor's pole. Mapping based on factor.
+   For now we just record A/B/C/D selection; scoring tie-break.
+   ============================================================ */
+const ABILITY = [
+  {
+    factor: 'A',
+    q: 'あなたの商品(例:ダイエットプログラム)を販売するLP(ランディングページ)を作ることになりました。どの見出し(キャッチコピー)が最も自分に合うと思いますか?',
+    choices: [
+      { label: 'A', text: '科学的データと過去の実績を強調する(「成功率98%、◯◯大学の研究に基づくメソッド」)', side: 'low' },
+      { label: 'B', text: '感情を揺さぶるストーリーで訴えかける(「もう二度と鏡の前で泣かない。私が人生を変えた物語」)', side: 'high' },
+      { label: 'C', text: '直感的なイメージや世界観を前面に出す(「新しい自分に出会う、魔法の30日間」)', side: 'high' },
+      { label: 'D', text: '論理的なステップを明確に提示する(「確実に痩せるための3つのフェーズと実践ロードマップ」)', side: 'low' },
+    ],
+  },
+  {
+    factor: 'B',
+    q: 'あなたのサービスを広めるためのメインの集客手法として、どれを選びますか?',
+    choices: [
+      { label: 'A', text: '大規模なウェビナーを開催し、数百人に向けて一斉にプレゼンする', side: 'low' },
+      { label: 'B', text: '少人数のグループコンサルティングを開催し、参加者同士の対話も促す', side: 'high' },
+      { label: 'C', text: '1対1の無料相談会を多数設定し、個別の悩みに深く寄り添う', side: 'high' },
+      { label: 'D', text: '影響力のあるメディア(YouTubeやメルマガ)で、自分の哲学を一方的に発信する', side: 'low' },
+    ],
+  },
+  {
+    factor: 'C',
+    q: '新しいビジネスの立ち上げを任されました。どの戦略を採用しますか?',
+    choices: [
+      { label: 'A', text: '期間限定の強力なオファーを作り、1ヶ月間で爆発的な売上を作る(プロダクトローンチ)', side: 'low' },
+      { label: 'B', text: 'SEO(検索エンジン最適化)対策を徹底し、半年後に安定した集客基盤を作る', side: 'high' },
+      { label: 'C', text: '最新のトレンドに乗った商品を素早く開発し、競合がいないうちに売り切る', side: 'low' },
+      { label: 'D', text: '顧客と長期的な関係を築くため、低単価のサブスクリプション(月額課金)サービスを始める', side: 'high' },
+    ],
+  },
+  {
+    factor: 'D',
+    q: '初めて会う見込み客に自己紹介をするとき、何を最も強調しますか?',
+    choices: [
+      { label: 'A', text: 'これまでの輝かしい実績、受賞歴、有名なクライアントとの取引実績', side: 'low' },
+      { label: 'B', text: '自分が過去にどれだけ苦労し、そこからどうやって這い上がってきたかの挫折と復活のストーリー', side: 'high' },
+      { label: 'C', text: '自分が持っている独自のノウハウや、他にはない専門的なスキル', side: 'low' },
+      { label: 'D', text: '見込み客の現在の悩みに深く共感し、「私にもその辛さがわかります」という姿勢', side: 'high' },
+    ],
+  },
+  {
+    factor: 'E',
+    q: '顧客にノウハウを伝えるための教材を作成します。どの形式で作るのが最も得意ですか?',
+    choices: [
+      { label: 'A', text: '体系的に整理された、文字と図解中心のPDFマニュアル(電子書籍)', side: 'low' },
+      { label: 'B', text: '熱量や感情が直接伝わる、音声(ポッドキャスト)や動画コンテンツ', side: 'high' },
+      { label: 'C', text: '美しいデザインと洗練されたレイアウトのプレゼンテーション資料(スライド)', side: 'low' },
+      { label: 'D', text: '参加者が実際にワークを行い、体感しながら学べる体験型ワークショップ', side: 'high' },
+    ],
+  },
+  {
+    factor: 'F',
+    q: 'ビジネスで大成功を収めた後、次にあなたが目指す目標はどれですか?',
+    choices: [
+      { label: 'A', text: 'さらに事業を拡大し、業界全体のスタンダード(標準)となるようなプラットフォームを作る', side: 'low' },
+      { label: 'B', text: '後進の育成に力を入れ、自分の知識や経験を少数の弟子に徹底的に受け継ぐ', side: 'high' },
+      { label: 'C', text: '新しい市場を開拓し、誰もやったことがない革新的なビジネスモデルに挑戦する', side: 'low' },
+      { label: 'D', text: '自分が救われたように、社会的に立場の弱い人たちを支援する活動(慈善事業など)に専念する', side: 'high' },
+    ],
+  },
+];
+
+/* ============================================================
+   15-TYPE DICTIONARY
+   ============================================================ */
+const TYPES = {
+  AB: {
+    name: 'プレゼンター型', catch: '話すほど売れる人',
+    def: 'データや論理に基づいた客観的な事実を、不特定多数に向けて一方的に発信することで、市場での認知と信頼を獲得するタイプ。話す力と対話力を兼ね備え、人前やライブで最も力を発揮する。',
+    traits: ['感情論を排し、数値やエビデンスを重視する', '複雑な事象を体系化し、わかりやすいメソッドとして提示できる', '個別対応よりも、1対多の効率的な情報伝達を好む'],
+    strength: '説得力のあるプレゼンテーション能力、属人性を排除した再現性の高いノウハウの構築、マス市場へのスケーラビリティ(拡張性)',
+    weakness: '個別の感情的なケアや、深い悩みへの共感が苦手。双方向のコミュニティ運営において、熱量を持続させにくい。',
+    goodArea: 'マーケティング、PR戦略、大規模なプロモーション設計',
+    badArea: '1対1のクロージング(セールス)、カスタマーサポート、コミュニティマネジメント',
+    goodStrategy: 'コンテンツマーケティング(SEO、ホワイトペーパー)、ウェビナー(1対多のオンラインセミナー)、広告運用(データに基づくPDCA)',
+    badStrategy: '口コミや紹介によるバイラルマーケティング、密な交流を前提としたオンラインサロン運営',
+    goodMedia: 'オウンドメディア(ブログ、自社サイト)、YouTube(解説系・ノウハウ系)、Voicy、セミナー、プレスリリース、専門誌',
+    badMedia: 'Instagram(日常の切り取りや感情表現が主体の媒体)、TikTok(短尺のエンタメ系動画)',
+    goodProduct: '無形商材(オンライン講座、情報商材、SaaS)/ 薄利多売〜中単価 / BtoB(論理的決定が重視される市場)',
+    badProduct: '有形商材(特にデザイン性や情緒的価値が重視されるもの)、超高単価の個別コンサルティング',
+    persona: '年齢:30代〜50代のビジネスパーソン | 思考タイプ:論理的、効率重視、左脳型 | 行動特性:情報収集に熱心で、比較検討をしっかり行う | 購買トリガー:「客観的なデータ」「他社との明確な違い」「費用対効果」',
+    shadow: '「とりあえず話を聞いてほしい」「感情的に寄り添ってほしい」と求める依存型の顧客',
+    steps: [
+      { title: 'リサーチと体系化', desc: '市場にある情報を収集し、独自の切り口で「成功の法則(◯◯メソッド)」として体系化する。' },
+      { title: 'リード獲得', desc: 'そのメソッドの一部を無料レポート(ホワイトペーパー)として公開し、メールアドレス(リスト)を獲得する。' },
+      { title: 'ウェビナー販売', desc: '集まったリストに対して、データと論理で構築されたウェビナーを開催し、オンライン講座を販売する。' },
+    ],
+  },
+  AC: {
+    name: 'アイデアメーカー型', catch: '思いつきが武器になる人',
+    def: '感性とスピードを武器に、緻密な計算と斬新なアイデアに基づいて、短期間で爆発的な成果を生み出すプロモーションを設計・実行するタイプ。新しい切り口や企画を次々と生み出す。',
+    traits: ['目標から逆算して、緻密なスケジュールとタスクを組む', '顧客の心理的ハードルを段階的に下げるシナリオ設計が得意', '短期決戦に強く、高い集中力を発揮する'],
+    strength: 'プロダクトローンチなどの高度なプロモーション設計力、数字(CPA、CVRなど)の管理能力、締め切り効果を活用した高いコンバージョン率の実現',
+    weakness: '長期的なブランド構築や、地道なSEO対策が苦手。プロモーション終了後の燃え尽き症候群に陥りやすい。',
+    goodArea: 'マーケティング(特にダイレクトレスポンスマーケティング)、コンテンツ企画',
+    badArea: 'ブランディング(長期的な世界観の構築)、カスタマーサクセス',
+    goodStrategy: 'プロダクトローンチ、期間限定キャンペーン、ステップメール(シナリオ配信)、TikTok・X での企画発信',
+    badStrategy: 'SEO(検索エンジン最適化)、長期的なコミュニティ育成',
+    goodMedia: 'TikTok、X(Twitter)、メールマガジン、LINE公式アカウント、Facebook広告、Google広告',
+    badMedia: 'Pinterest、オーガニックのInstagram運用',
+    goodProduct: '無形商材(オンライン講座、イベントチケット)/ 高単価(ローンチで価値を高めて販売するため)/ BtoC、BtoB問わず',
+    badProduct: '低単価のサブスクリプションモデル、日用品などのコモディティ商品',
+    persona: '年齢:20代後半〜40代 | 思考タイプ:結果重視、行動派 | 行動特性:「今すぐ解決したい」という強い痛み(ペイン)を抱えている | 購買トリガー:「限定性(今だけ)」「希少性(ここだけ)」「明確なベネフィット」',
+    shadow: '「じっくり検討したい」「他社と比較してから決めたい」という慎重すぎる顧客',
+    steps: [
+      { title: 'オファーの設計', desc: 'ターゲットの強い悩みを解決する、魅力的で期間限定のオファー(商品・特典)を企画する。' },
+      { title: 'シナリオ構築', desc: '教育から販売までのステップメール(またはLINE)のシナリオを論理的に構築する。' },
+      { title: '短期集中プロモーション', desc: '広告やSNSで一気にリストを集め、決められた期間内に集中してセールスをかける。' },
+    ],
+  },
+  AD: {
+    name: 'ストーリーテラー型', catch: '物語で売れる人',
+    def: '感性と共感を武器に、自らの体験や哲学をストーリーとして語ることで、人の心を深く動かし、揺るぎないファンを生み出すタイプ。物語の力でブランドを構築する。',
+    traits: ['自分の弱さや失敗も含めた「人間味のあるストーリー」で人を惹きつける', '顧客に対して「先生と生徒」ではなく「共感と応援」の関係を築く', '言葉選びのセンスが高く、感情に響くコピーライティングが得意'],
+    strength: 'ブランドストーリーの構築力、感情に訴えかけるコピーライティング、ファンの熱量を高めるコミュニケーション',
+    weakness: 'データや論理に基づく説明が苦手。感情に寄りすぎて、ビジネスの仕組み化が遅れることがある。',
+    goodArea: 'ブランディング、PR(ストーリーを活用した広報)',
+    badArea: 'データ分析、広告運用の最適化',
+    goodStrategy: 'ブランドストーリーマーケティング、Instagram・YouTubeでの世界観発信、出版(自伝的なビジネス書)',
+    badStrategy: '数値ベースの広告運用、A/Bテストの繰り返し',
+    goodMedia: 'Instagram(ストーリーズ、フィード)、YouTube(ドキュメンタリー風の動画)、ブログ(エッセイ調)、書籍',
+    badMedia: 'データ重視のBtoBメディア、専門的な論文誌',
+    goodProduct: '無形商材(コーチング、ブランドコンサルティング、オンライン講座)/ 中単価〜高単価 / BtoC(個人向け)',
+    badProduct: '機能性のみが重視される工業製品、スペック比較で選ばれるBtoBシステム',
+    persona: '年齢:20代〜40代 | 思考タイプ:感情型、共感重視、右脳型 | 行動特性:「この人の生き方に共感した」という理由で購入を決める | 購買トリガー:「共感できるストーリー」「人間味」「応援したい気持ち」',
+    shadow: '「感情論はいいから、数字と実績を見せてくれ」という論理重視の顧客',
+    steps: [
+      { title: '自分のストーリーの言語化', desc: '自分の人生における挫折と復活の物語を、感情を込めて文章にまとめる。' },
+      { title: 'SNSでの世界観発信', desc: 'Instagramやブログで、そのストーリーと日常の哲学を継続的に発信し、共感するファンを集める。' },
+      { title: 'ファン向け商品の販売', desc: '集まったファンに対して、自分の哲学を深く学べるオンライン講座やコーチングを販売する。' },
+    ],
+  },
+  AE: {
+    name: 'クリエイター型', catch: '見せるだけで伝わる人',
+    def: '感性とビジュアル表現力を武器に、複雑な情報を美しく整理・構造化し、見るだけで価値が伝わるコンテンツを生み出すタイプ。デザインと情報設計の両方に長けている。',
+    traits: ['文章を書くこと、情報を整理して図解することが得意', '感情的な煽りよりも、理路整然とした説明を好む', 'デザインセンスが高く、見た目の美しさとわかりやすさを両立させる'],
+    strength: '高いライティング能力とデザイン力、SEOに強い質の高い記事の量産、情報を資産化(ストック)する能力',
+    weakness: '動画や音声など、リアルタイムでのパフォーマンス(ライブ配信など)が苦手。即効性のある集客よりも時間がかかる。',
+    goodArea: 'マーケティング(コンテンツマーケティング、SEO)、デザイン、ブランディング',
+    badArea: 'セールス(対面でのクロージング)、PR(イベント登壇など)',
+    goodStrategy: 'SEOブログ運営、電子書籍(Kindle)出版、ホワイトペーパー・マニュアル制作、Instagram(デザイン系)',
+    badStrategy: 'ライブコマース、音声配信(ポッドキャスト)中心のマーケティング',
+    goodMedia: 'Instagram(フィード、デザイン系)、ブログ(WordPress、note)、X(Twitter)(図解や長文ツリー)、YouTube(解説・図解動画)',
+    badMedia: 'Clubhouseやスペースなどの音声メディア、即興性が求められるライブ配信',
+    goodProduct: '無形商材(電子書籍、テキストベースのオンライン講座、デザインテンプレート)/ 低単価〜中単価 / BtoC、BtoB問わず',
+    badProduct: '対面での高単価コンサルティング、体験を売りにするイベント型サービス',
+    persona: '年齢:20代〜50代の学習意欲の高い層 | 思考タイプ:情報収集型、自己解決型、ビジュアル重視 | 行動特性:人に聞く前に、まず自分で検索して調べる | 購買トリガー:「情報の網羅性」「わかりやすい図解」「洗練されたデザイン」',
+    shadow: '「文字を読むのが面倒」「手っ取り早く答えだけ教えてほしい」という顧客',
+    steps: [
+      { title: 'テーマの選定と構造化', desc: '特定のニッチなテーマを選び、ターゲットが知りたい情報を網羅的にリストアップして目次(構造)を作る。' },
+      { title: '質の高い記事の執筆', desc: 'SEOを意識しつつ、図解を交えた圧倒的にわかりやすいブログ記事(またはnote)を執筆する。' },
+      { title: '有料コンテンツの販売', desc: '無料記事で信頼を獲得し、さらに深いノウハウやテンプレートを有料記事(noteやBrainなど)として販売する。' },
+    ],
+  },
+  AF: {
+    name: 'エデュケーター型', catch: '教えるほど売れる人',
+    def: '論理と貢献を武器に、市場全体を俯瞰し、体系化された知識を惜しみなく教えることで信頼を積み上げ、ビジネスをスケールさせるタイプ。教えることそのものが最大の営業活動になる。',
+    traits: ['現場のプレイヤーとして動くよりも、システムや仕組みを作ることに長けている', '教育コンテンツの設計と体系化が得意', 'データと論理に基づき、感情に流されない経営判断ができる'],
+    strength: '高い抽象化能力とシステム思考、教育プログラムの構築力、ビジネスモデルの仕組み化とスケーラビリティ',
+    weakness: '初期段階での泥臭い現場作業や、個別の顧客対応を軽視しがち。ビジョンが大きすぎて周囲がついてこれないことがある。',
+    goodArea: '教育事業、マーケティング全体の設計、講座運営',
+    badArea: 'カスタマーサポート、細かなデザイン制作などの実務',
+    goodStrategy: 'YouTube(教育系チャンネル)、note・ブログでの体系的な情報発信、オンライン講座の構築、協会ビジネス',
+    badStrategy: '属人性の高い職人型のビジネス、1対1の密なコミュニティ運営',
+    goodMedia: 'YouTube(教育・ノウハウ系)、note、ブログ、オンライン講座プラットフォーム(Udemy等)、書籍',
+    badMedia: '日常の感情を綴るブログやInstagram',
+    goodProduct: '無形商材(オンライン講座、SaaS、教育プラットフォーム)/ 中単価〜高単価(LTVを重視)/ BtoBメイン',
+    badProduct: '自分が直接労働を提供し続けるコンサルティング、手作りの一点もの',
+    persona: '年齢:30代〜50代の経営者、学習意欲の高い層 | 思考タイプ:戦略的、マクロ視点、ROI(投資対効果)重視 | 行動特性:体系的に学びたい、仕組みを導入したいと考えている | 購買トリガー:「体系化されたカリキュラム」「明確なROI」「講師の専門性」',
+    shadow: '「感情的なつながり」や「個別の特別扱い」を強く求める顧客',
+    steps: [
+      { title: '知識の体系化', desc: '自分の専門知識を「◯◯メソッド」として体系化し、カリキュラム(目次)を作る。' },
+      { title: '無料教育コンテンツの発信', desc: 'YouTubeやnoteで、そのメソッドの一部を無料で公開し、「この人から学びたい」という信頼を獲得する。' },
+      { title: '有料講座の販売', desc: '信頼を獲得した見込み客に対して、体系的なオンライン講座を販売する。' },
+    ],
+  },
+  BC: {
+    name: 'トレンドコネクター型', catch: '流れをつくる人',
+    def: '交流とスピードを武器に、時代のトレンドをいち早く察知し、人と情報をつなぐことで短期間に熱狂的なブームを巻き起こすタイプ。コラボレーションの天才。',
+    traits: ['流行の最先端を捉える嗅覚が鋭い', '強いメッセージ性とパフォーマンスで、大衆の感情を動かすのが得意', '熱しやすく冷めやすい(一つのことに長く執着しない)'],
+    strength: '爆発的な集客力と影響力、トレンドに乗った商品開発のスピード、大衆を扇動するコピーライティングとスピーチ能力',
+    weakness: 'ブームが去った後の顧客維持(リテンション)が苦手。論理的な裏付けや、緻密なデータ分析を軽視しがち。',
+    goodArea: 'PR(話題作り)、マーケティング(プロモーション)、コラボ企画',
+    badArea: 'カスタマーサクセス、バックオフィス業務',
+    goodStrategy: 'インフルエンサーマーケティング、バズマーケティング(SNSでの拡散)、トレンドに乗った短期ローンチ、コラボ企画',
+    badStrategy: '長期的なSEO対策、地道なコミュニティ育成',
+    goodMedia: 'TikTok、X(Twitter)、YouTube Shorts(ショート動画)、Instagram(リール、ストーリーズ)',
+    badMedia: '長文のブログ、専門的な論文',
+    goodProduct: '有形・無形問わずトレンド性のある商品 / 薄利多売〜中単価 / BtoCメイン',
+    badProduct: '普遍的で変化の少ない伝統的な商品、論理的な説明が必要な複雑なBtoBシステム',
+    persona: '年齢:10代〜30代のトレンドに敏感な層 | 思考タイプ:直感型、ミーハー、感情優先 | 行動特性:「みんながやっているから」「今話題だから」という理由で行動する | 購買トリガー:「話題性」「FOMO(見逃すことへの恐怖)」「カリスマへの憧れ」',
+    shadow: '「流行に流されず、本質的な価値を見極めたい」という保守的な顧客',
+    steps: [
+      { title: 'トレンドのキャッチと発信', desc: '今まさに伸びている市場やトレンドを見つけ、SNSで自分の強い意見を乗せて発信する。' },
+      { title: 'フォロワーの熱狂化', desc: '尖ったメッセージでアンチを恐れずに発信し、熱狂的なフォロワー(ファン)を獲得する。' },
+      { title: 'トレンド商品の短期販売', desc: 'フォロワーの熱量が最も高いタイミングで、トレンドに合わせた商品を期間限定で販売する。' },
+    ],
+  },
+  BD: {
+    name: 'エンパシーコネクター型', catch: 'つながりで売れる人',
+    def: '対話と共感を武器に、顧客一人ひとりと深い信頼関係を築き、その絆をベースにビジネスを展開するタイプ。人と人をつなぐ力が最大の資産。',
+    traits: ['自分の信念や哲学を持ちつつ、相手の話を深く聴く力がある', '顧客を「対等なパートナー」として扱い、共に成長する関係を築く', '独自の言語やコミュニティ文化を作り、帰属意識を高める'],
+    strength: '極めて高い顧客ロイヤリティ(熱狂的なファン)の獲得、価格競争に巻き込まれない関係性構築、強固なコミュニティ運営能力',
+    weakness: '外部からの批判(アンチ)を生みやすい。自分自身への依存度が高く、仕組み化や権限委譲が難しい。',
+    goodArea: 'ブランディング(関係性ブランディング)、セールス(個別相談)、コミュニティ運営',
+    badArea: '大衆向けのマスマーケティング(広く浅く集めること)',
+    goodStrategy: 'LINE公式アカウント運営、オンラインサロン運営、個別相談からのバックエンド販売、コミュニティマーケティング',
+    badStrategy: '割引キャンペーン(ブランド価値を下げるため)、SEOによる検索流入(指名検索以外)',
+    goodMedia: 'LINE公式アカウント、クローズドなコミュニティ(Discord、専用アプリ)、YouTube(長尺の対話動画)',
+    badMedia: 'SEOブログ(不特定多数に見られるため)',
+    goodProduct: '無形商材(オンラインサロン、高額コンサルティング、コーチング)/ 高単価〜超高単価 / BtoC(個人起業家や経営者含む)',
+    badProduct: '誰でも買える日用品、他社と比較されるコモディティ商品',
+    persona: '年齢:20代〜50代(年齢より精神的なステージに依存)| 思考タイプ:共感型、つながり重視 | 行動特性:「この人と一緒にいたい」「この仲間に入りたい」という動機で行動する | 購買トリガー:「深い共感」「信頼できる人柄」「選ばれた人だけが入れる特別感」',
+    shadow: '「自分で考えて行動したい」「権威に縛られたくない」という自立心の強い顧客',
+    steps: [
+      { title: '独自の哲学の言語化', desc: '自分が信じる「新しい正解(独自の哲学)」を強烈な言葉で定義する。' },
+      { title: 'クローズドな場への誘導', desc: 'SNS等でその哲学の片鱗を発信し、共鳴した人だけをLINEなどのクローズドな場に集める。' },
+      { title: 'コミュニティの立ち上げ', desc: '集まったリストに対して、オンラインサロンや少人数のグループコンサルティングを販売する。' },
+    ],
+  },
+  BE: {
+    name: 'パフォーマー型', catch: '場で売れる人',
+    def: '対話と表現を武器に、文章よりも「声」や「熱量」、リアルタイムの「体験」を通じて、多くの聴衆を魅了し、その場でファンを獲得するタイプ。',
+    traits: ['ライブ配信やセミナーなど、即興でのトークやパフォーマンスが得意', '感情を込めた話し方で、聴衆の心を動かす(モチベーター気質)', '完璧に作り込まれたコンテンツよりも、その場でのライブ感を重視する'],
+    strength: '高いプレゼンテーション能力とスピーチ力、視聴者とのリアルタイムな感情の共有と熱量の伝播、セミナーやイベントでの高い成約率',
+    weakness: '文章を書くことや、緻密な資料作成が苦手。録画や録音されたコンテンツでは、本来の魅力が半減することがある。',
+    goodArea: 'セールス(セミナーセールス、1対多のクロージング)、PR、イベント運営',
+    badArea: 'マーケティング(緻密なデータ分析やSEO)',
+    goodStrategy: 'ライブコマース(SNSでのライブ配信を通じた販売)、セミナーマーケティング、ポッドキャスト(音声配信)、リアルイベント',
+    badStrategy: 'ステップメールのシナリオ構築、SEOブログの量産',
+    goodMedia: 'Instagramライブ、TikTokライブ、YouTube(トーク中心の動画)、ポッドキャスト、Voicy',
+    badMedia: '文字中心のブログ(noteなど)、専門的なホワイトペーパー',
+    goodProduct: '無形商材(セミナー、講演会、イベントチケット)/ 有形商材(ライブコマースで魅力を伝えやすいアパレルやコスメ)/ 中単価〜高単価',
+    badProduct: '機能性だけで売れる(説明が不要な)商品、マニュアルを読んで自己完結する教材',
+    persona: '年齢:20代〜50代 | 思考タイプ:感情型、直感型、共感重視 | 行動特性:人の熱意やエネルギーに触れることでモチベーションが上がる | 購買トリガー:「熱量」「その場のノリと勢い」「スピーカーへの憧れ・共感」',
+    shadow: '「感情論はいいから、データとエビデンスを出してくれ」という論理重視の顧客',
+    steps: [
+      { title: 'ライブ配信の開始', desc: 'InstagramやYouTubeなどで、自分の情熱やストーリーを語るライブ配信を定期的に行う。' },
+      { title: '視聴者との関係構築', desc: 'コメントを拾いながらリアルタイムでコミュニケーションを取り、ファンを増やす。' },
+      { title: 'セミナー・イベントへの誘導', desc: 'ライブ配信の熱量が高い状態で、有料のオンラインセミナーやリアルイベントのチケットを販売する。' },
+    ],
+  },
+  BF: {
+    name: 'コミュニティビルダー型', catch: '仲間で売れる人',
+    def: '交流と貢献を武器に、人を育て、仲間を集め、コミュニティの力でビジネスを成長させるタイプ。自分が前に出るよりも、メンバーの成功を支えることで全体が大きくなる。',
+    traits: ['自分の存在自体がコンテンツ(ブランド)となる', '社会課題や大きなビジョンを掲げ、多くの人を巻き込むのが得意', 'メンバー同士の交流を促進し、コミュニティ全体の価値を高める'],
+    strength: 'コミュニティの設計・運営能力、メンバーの成長を支援するファシリテーション力、長期的な顧客ロイヤリティの構築',
+    weakness: '「広く浅く」になりがちで、1人あたりの顧客単価(LTV)が低くなりやすい。常にコミュニティに関与し続ける必要がある。',
+    goodArea: 'コミュニティ運営、カスタマーサクセス、教育事業',
+    badArea: '1対1の細やかなカスタマーサポート(スケールしないため)',
+    goodStrategy: 'オンラインサロン運営、Discord・LINEコミュニティ、メンバー同士のコラボ企画、クラウドファンディング',
+    badStrategy: 'ニッチな市場での地道な専門家ポジショニング、クローズドな少人数コミュニティの運営',
+    goodMedia: 'LINE公式アカウント、Discord、オンラインサロンプラットフォーム、YouTube(コミュニティ向け)',
+    badMedia: '専門性の高いニッチな業界誌',
+    goodProduct: '無形商材(オンラインサロン、コミュニティ会費、継続型サービス)/ 低単価〜中単価(月額課金)/ BtoC(マス市場)',
+    badProduct: '専門知識が必要な複雑なBtoBシステム、対面での個別コンサルティング',
+    persona: '年齢:10代〜40代の幅広い層 | 思考タイプ:つながり重視、仲間意識が強い | 行動特性:一人で頑張るよりも、仲間と一緒に成長したいと考える | 購買トリガー:「仲間がいる安心感」「コミュニティの雰囲気」「一緒に成長できる環境」',
+    shadow: '「有名かどうかよりも、実質的な機能やコスパを重視する」という実利主義の顧客',
+    steps: [
+      { title: 'ビジョンの共有', desc: '自分が実現したいビジョンや、仲間と一緒に目指したい世界をSNSで発信する。' },
+      { title: 'コミュニティの立ち上げ', desc: '共感してくれた人を集め、LINEやDiscordで小さなコミュニティを作る。' },
+      { title: '会員制サービスの販売', desc: 'コミュニティの価値が高まったタイミングで、月額課金のオンラインサロンとして正式に販売する。' },
+    ],
+  },
+  CD: {
+    name: 'ブランドアクセラレーター型', catch: '一気に広げる人',
+    def: 'スピードと信頼を武器に、自らの圧倒的な実績や権威性を活かして、短期間で大きな認知と売上を一気に獲得するタイプ。加速装置のようにビジネスを急成長させる。',
+    traits: ['「◯◯賞受賞」「売上◯億円」といったわかりやすい実績を前面に出す', 'プロダクトローンチなどの短期集中型のマーケティング手法を好む', '顧客に対して「私のようになりたければ、この期間に買え」という強いオファーを提示する'],
+    strength: '高いコンバージョン率(成約率)と爆発的な売上構築力、権威性を活用した高単価商品の販売、プロモーション期間中の圧倒的な集中力と行動力',
+    weakness: 'プロモーション終了後の売上の波(ボラティリティ)が大きい。顧客との長期的な関係構築や、地道なフォローアップが苦手。',
+    goodArea: 'マーケティング(ダイレクトレスポンス)、セールス(クロージング)、広告・PR・キャンペーン',
+    badArea: 'カスタマーサクセス、長期的なコミュニティ運営',
+    goodStrategy: 'プロダクトローンチ、ウェビナーを活用した高額バックエンド販売、期間限定のキャンペーンや特別オファー、広告運用',
+    badStrategy: 'SEOやコンテンツマーケティングによる長期的な集客、低単価のサブスクリプションモデル',
+    goodMedia: 'メールマガジン、LINE公式アカウント、Facebook広告、YouTube広告、自社のランディングページ(LP)',
+    badMedia: 'オーガニックのSEOブログ、日常を綴るだけのSNSアカウント',
+    goodProduct: '無形商材(高額なオンライン講座、コンサルティング、マスターマインド)/ 高単価〜超高単価 / BtoC、BtoB(特に起業家や経営者向け)',
+    badProduct: '薄利多売の有形商材、長期間にわたる細やかなサポートが必要なサービス',
+    persona: '年齢:30代〜50代の成長意欲の高い層 | 思考タイプ:結果重視、効率重視、権威主義 | 行動特性:「手っ取り早く結果を出したい」「実績のある人から直接学びたい」| 購買トリガー:「圧倒的な実績」「期間限定の希少性」「明確なベネフィット(利益)」',
+    shadow: '「時間をかけて自分でじっくり考えたい」「煽られるのが嫌い」という慎重な顧客',
+    steps: [
+      { title: '実績の棚卸しとオファー作成', desc: '自分の最強の実績を抽出し、ターゲットの悩みを解決する強力なオファー(商品)を作る。' },
+      { title: '見込み客(リスト)の獲得', desc: '広告やSNSを活用し、「実績に基づく無料ノウハウ」をフックにLINEやメルマガのリストを集める。' },
+      { title: '短期集中ローンチ', desc: '集めたリストに対して、期間限定(例:3日間のみ)で高単価商品を一気に販売する。' },
+    ],
+  },
+  CE: {
+    name: 'ビジュアルプロモーター型', catch: '伸ばすのが早い人',
+    def: 'スピードと視覚を武器に、視覚的に洗練されたデザインやキャッチーなコピーを用いて、顧客の直感に訴えかけ、短期間で爆発的にフォロワーや売上を伸ばすタイプ。',
+    traits: ['デザインセンスが高く、見た目の美しさやインパクトを重視する', '長い文章よりも、画像、図解、短いキャッチコピーで直感的に伝えるのが得意', 'トレンドに敏感で、流行のデザインやフォーマットをいち早く取り入れる'],
+    strength: '高いクリエイティブ制作能力(LP、バナー、SNS画像など)、視覚的な訴求によるクリック率やコンバージョン率の高さ、ビジュアル特化型SNSでの集客力',
+    weakness: '論理的な説明や、深い専門知識を要求される長文コンテンツの作成が苦手。見た目のインパクトに頼りがちで、商品の本質的な価値が伝わりにくいことがある。',
+    goodArea: 'マーケティング(クリエイティブ制作、SNS運用)、PR(ブランディング)',
+    badArea: 'セールス(対面での論理的なクロージング)、高度なデータ分析',
+    goodStrategy: 'Instagram・TikTokを活用したビジュアルマーケティング、洗練されたLPを用いた短期プロモーション、インフルエンサーとのコラボレーション、広告クリエイティブ制作',
+    badStrategy: '長文のSEOブログやホワイトペーパーの執筆、音声のみのポッドキャスト配信',
+    goodMedia: 'Instagram(フィード、ストーリーズ、リール)、TikTok、Pinterest、デザイン性の高い自社サイトやLP',
+    badMedia: 'テキスト中心のX(Twitter)やnote、Clubhouseなどの音声メディア',
+    goodProduct: '有形商材(アパレル、コスメ、インテリア、雑貨などデザイン性が重要なもの)/ 無形商材(デザインテンプレート、写真素材)/ 低単価〜中単価(衝動買いしやすい価格帯)',
+    badProduct: '複雑なBtoBシステムや、機能性のみが重視される工業製品、論理的な説明が不可欠な高額な金融商品',
+    persona: '年齢:10代〜30代の女性(またはデザイン感度の高い男性)| 思考タイプ:直感型、感性重視、ビジュアル重視 | 行動特性:「かわいい」「かっこいい」「おしゃれ」と感じたら即座に行動する | 購買トリガー:「洗練された世界観」「直感的な魅力」「インフルエンサーの愛用」',
+    shadow: '「見た目よりもスペック(仕様)やデータを詳細に比較したい」という左脳型の顧客',
+    steps: [
+      { title: '世界観の構築', desc: 'Instagramなどで、統一された美しい世界観(トーン&マナー)のアカウントを作成する。' },
+      { title: 'ビジュアルコンテンツの量産', desc: 'ターゲットが保存したくなるような、有益で美しい画像やショート動画を継続的に投稿し、フォロワーを増やす。' },
+      { title: '直感的なオファー', desc: 'フォロワーに対して、デザイン性の高いLPへ誘導し、衝動買いしやすい価格帯の商品を販売する。' },
+    ],
+  },
+  CF: {
+    name: 'グロースビルダー型', catch: '売れる仕組みを作る人',
+    def: 'スピードと長期構築を武器に、壮大なビジョンを掲げつつ、短期間で仕組みの骨格を作り上げ、それを長期的に育てて売れ続けるビジネスモデルを構築するタイプ。',
+    traits: ['現状維持を嫌い、業界の常識を覆すような革新的なアイデアを好む', 'カリスマ的なリーダーシップで、共感する仲間や資金を短期間で集める', '仕組み化・自動化に強く、LTV(顧客生涯価値)を最大化する設計が得意'],
+    strength: 'ビジネスモデルの設計力、メルマガやLINEを活用したLTV設計、クラウドファンディングなどでの資金調達力',
+    weakness: 'アイデアが先行しすぎて、実行部隊(オペレーション)が追いつかないことが多い。熱しやすく冷めやすいため、プロジェクトの長期的な継続が苦手。',
+    goodArea: '商品開発、マーケティング(仕組み化)、経営戦略',
+    badArea: 'カスタマーサポート、経理などのバックオフィス業務',
+    goodStrategy: 'メルマガ・LINE公式アカウントを活用したLTV設計、サブスクリプションモデルの構築、商品開発とファネル設計、クラウドファンディング',
+    badStrategy: '地道なSEO対策やコツコツとしたブログ更新、変化の少ない保守的なビジネスモデルの運営',
+    goodMedia: 'メールマガジン、LINE公式アカウント、クラウドファンディングプラットフォーム、ビジネス系メディア',
+    badMedia: '日常の些細な出来事を綴るだけのInstagram、専門的すぎる学術誌',
+    goodProduct: '無形商材(サブスクリプション、SaaS、自動化されたオンライン講座)/ 有形商材(革新的なガジェットや、ストーリー性のあるプロダクト)/ 価格帯は問わない',
+    badProduct: '既存の商品と機能面でしか差別化できないコモディティ商品、社会的意義が感じられない単なる金儲けのツール',
+    persona: '年齢:20代〜50代のイノベーター層、アーリーアダプター層 | 思考タイプ:未来志向、仕組み重視、効率重視 | 行動特性:「この仕組みに投資したい」「長期的にリターンが得られる」という動機で行動する | 購買トリガー:「革新性」「仕組みの完成度」「長期的なリターン」',
+    shadow: '「前例がないものは信用できない」「実績や保証が絶対必要」という保守的な顧客',
+    steps: [
+      { title: 'ビジネスモデルの設計', desc: 'ターゲットの課題を解決するサブスクリプション型のサービスを設計する。' },
+      { title: 'MVPの構築と検証', desc: '最小限の機能でサービスを立ち上げ、少数のテストユーザーに使ってもらい、フィードバックを得る。' },
+      { title: 'ファネルの構築と自動化', desc: 'メルマガやLINEを活用した自動販売の仕組み(ファネル)を構築し、安定した売上を作る。' },
+    ],
+  },
+  DE: {
+    name: 'ビジュアルオーソリティ型', catch: '見た目で信頼される人',
+    def: '権威とビジュアルを武器に、高度な専門知識を美しく体系化されたテキストやデザインとして世に送り出すことで、「見ただけで信頼される」揺るぎないポジションを築くタイプ。',
+    traits: ['自分の専門分野について深く研究し、体系化することが得意', '感情的なアピールよりも、論理とエビデンスに基づいた説得を好む', 'デザインやレイアウトにもこだわり、プロフェッショナルな印象を与える'],
+    strength: '書籍や論文などの質の高いコンテンツによる圧倒的な権威付け、BtoB市場や高単価コンサルティングにおける高い成約率、一度構築したコンテンツが長期的な資産になる',
+    weakness: '親しみやすさやエンタメ性に欠けるため、マス向けの集客には不向き。コンテンツの制作に時間がかかり、即効性がない。',
+    goodArea: 'ブランディング(専門家としての権威付け)、マーケティング(コンテンツSEO)',
+    badArea: 'PR(バラエティ的な露出)、短期的なプロモーション(煽るようなローンチ)',
+    goodStrategy: '商業出版(紙の書籍)、ホワイトペーパーマーケティング(BtoB向け)、専門家としてのメディア寄稿や連載、Instagram(ブランディング)',
+    badStrategy: 'TikTokなどのショート動画でのバズ狙い、ライブコマース',
+    goodMedia: '書籍、専門誌、業界紙、自社ブログ(専門性の高い長文記事)、LinkedIn、Instagram(ブランディング用)',
+    badMedia: 'TikTok、Clubhouseなどの即興性が求められる音声メディア',
+    goodProduct: '無形商材(高額コンサルティング、顧問契約、専門的な資格講座)/ 高単価〜超高単価 / BtoB(企業向け)またはプロフェッショナル向けのBtoC',
+    badProduct: '薄利多売の有形商材、専門知識が不要なエンタメ系サービス',
+    persona: '年齢:30代〜60代の経営者、担当責任者、学習意欲の高い専門職 | 思考タイプ:論理的、権威主義、品質・エビデンス重視 | 行動特性:書籍や専門記事をじっくり読み込み、比較検討した上で依頼する | 購買トリガー:「著書があるという権威」「体系化された独自の理論」「圧倒的な専門性」',
+    shadow: '「難しい話はいいから、簡単に稼げる方法を教えて」という短絡的な顧客',
+    steps: [
+      { title: '専門知識の体系化', desc: '自分の専門分野の知識を整理し、ターゲットの課題を解決するためのノウハウをテキスト(PDFやnote)にまとめる。' },
+      { title: 'ホワイトペーパー(または電子書籍)の無料配布', desc: 'そのテキストを「専門家のノウハウ」として無料で配布し、質の高い見込み客リストを獲得する。' },
+      { title: '個別相談からのコンサル受注', desc: 'リストに対して、専門的な見地からの無料診断や個別相談をオファーし、高単価のコンサルティングを契約する。' },
+    ],
+  },
+  DF: {
+    name: 'メンター型', catch: '寄り添うほど売れる人',
+    def: '共感と貢献を武器に、業界の権威としての実績と、一人ひとりに寄り添う深い共感力を併せ持ち、顧客を支えながら共に成長するタイプ。コーチングや継続サービスで真価を発揮する。',
+    traits: ['業界のスタンダードを創り出すような、スケールの大きな発想を持つ', '自身の成功だけでなく、顧客一人ひとりの成長に使命感を持っている', 'カリスマ性と共感力を兼ね備え、多くの人を巻き込む'],
+    strength: '長期的な顧客関係の構築力、コーチングやメンタリングによる高い顧客満足度、継続課金型サービスでの安定収益',
+    weakness: '視座が高すぎるため、初心者の細かい悩みに対応しきれないことがある。自分と同レベルの右腕(パートナー)を見つけるのが難しい。',
+    goodArea: 'コーチング、教育事業、継続型サービス、ブランディング',
+    badArea: '現場の細かな実務(カスタマーサポートや細かなデザイン調整)',
+    goodStrategy: 'コーチング・メンタリングプログラム、継続型の講座・スクール運営、出版やメディア出演を通じた啓蒙活動、協会ビジネス',
+    badStrategy: '匿名でのアフィリエイトや、顔出ししないスモールビジネス、ニッチすぎる市場での細々とした活動',
+    goodMedia: 'YouTube(対話・コーチング系)、ポッドキャスト、書籍、オンライン講座プラットフォーム、LINE公式アカウント',
+    badMedia: '匿名掲示板や、権威性が伝わらないカジュアルすぎるSNS',
+    goodProduct: '無形商材(コーチング、メンタリング、継続型の講座・スクール、協会認定講座)/ 高単価〜超高単価(BtoB)、月額課金(BtoC)',
+    badProduct: '自分が現場で労働し続けなければならない単発のコンサルティング、スケールしない手作りの商品',
+    persona: '年齢:20代〜60代の幅広い層 | 思考タイプ:成長意欲が高い、共感重視、メンターを求めている | 行動特性:「この人に導いてもらいたい」「寄り添ってくれる人から学びたい」と考える | 購買トリガー:「人柄への信頼」「寄り添ってくれる安心感」「長期的な成長の約束」',
+    shadow: '「権威や大きなビジョンには興味がなく、自分の小さな悩みだけを解決してほしい」という顧客',
+    steps: [
+      { title: 'メンターとしてのポジション確立', desc: '自分の経験と哲学を言語化し、「◯◯の専門家であり、寄り添うメンター」としてのプロフィールを作る。' },
+      { title: '無料コーチングの実施', desc: '少数の見込み客に対して無料のコーチングセッションを提供し、実績と口コミを作る。' },
+      { title: '継続型サービスの販売', desc: '満足した顧客に対して、月額課金のコーチングプログラムや継続型の講座を販売する。' },
+    ],
+  },
+  EF: {
+    name: '体験デザイナー型', catch: '体験で売れる人',
+    def: '体験と貢献を武器に、視覚的・言語的な表現力を駆使して、参加者が「感じる」ことで価値を理解する独自の体験を設計し、社会的なムーブメントを起こすタイプ。',
+    traits: ['編集者やプロデューサーのような視点を持ち、情報を魅力的にパッケージングするのが得意', '個人のカリスマ性よりも、体験やコンテンツそのものの力で人を動かす', '多くのクリエイターや専門家を巻き込み、一つの大きな作品(体験)を創り上げる'],
+    strength: '体験型コンテンツの設計力、質の高いイベントやワークショップの運営能力、多様な才能をまとめ上げるプロデュース能力',
+    weakness: '自分自身が表舞台に立って熱狂的なファンを作るのは苦手(裏方気質)。体験が育つまでに時間とコストがかかる。',
+    goodArea: 'イベント企画・運営、マーケティング(コンテンツマーケティング)、PR、ブランディング',
+    badArea: 'セールス(対面でのゴリゴリのクロージング)',
+    goodStrategy: '体験型ワークショップ・イベントの開催、リアル体験とオンラインを融合したハイブリッドイベント、コンテンツプラットフォームの構築',
+    badStrategy: '自分一人のカリスマ性に依存したオンラインサロン、短期的な煽りを使ったプロダクトローンチ',
+    goodMedia: 'イベント・ワークショップ(リアル)、Webメディア(自社構築のメディアサイト)、note・Substack、雑誌・書籍(編集者・プロデューサーとして)',
+    badMedia: 'TikTokやInstagramのライブ配信(即興性が求められるもの)',
+    goodProduct: '無形商材(イベントチケット、ワークショップ参加費、有料購読モデル)/ 有形商材(体験の世界観を体現したオリジナルグッズ)/ 低単価〜中単価(広く集めるモデル)',
+    badProduct: '自分自身の時間を切り売りする高額コンサルティング、体験の世界観に合わない機能性だけのコモディティ商品',
+    persona: '年齢:20代〜50代の情報感度の高い層 | 思考タイプ:体験重視、知的好奇心が旺盛、世界観重視 | 行動特性:質の高い体験や情報に価値を感じ、継続的に参加(購読)する | 購買トリガー:「体験の質の高さ」「世界観への共感」「参加することで得られる変化」',
+    shadow: '「情報の中身よりも、誰が言っているか(属人性)だけで判断する」という顧客',
+    steps: [
+      { title: '体験コンセプトの設計', desc: '特定のニッチなテーマに絞り、ターゲットが熱狂するような尖ったコンセプトの体験(ワークショップやイベント)を設計する。' },
+      { title: '小規模な体験イベントの開催', desc: 'まずは少人数で体験イベントを開催し、参加者の感動と口コミを生み出す。' },
+      { title: 'スケールと収益化', desc: '体験の評判が広まったタイミングで、規模を拡大するか、オンライン版の体験コンテンツとして販売する。' },
+    ],
+  },
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let state = {
+  likertIndex: 0,
+  likertAnswers: new Array(LIKERT.length).fill(null),
+  abilityIndex: 0,
+  abilityAnswers: new Array(ABILITY.length).fill(null),
+};
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startTest() {
+  state = {
+    likertIndex: 0,
+    likertAnswers: new Array(LIKERT.length).fill(null),
+    abilityIndex: 0,
+    abilityAnswers: new Array(ABILITY.length).fill(null),
+  };
+  showScreen('screen-likert');
+  renderLikert();
+}
+
+/* ============================================================
+   LIKERT RENDERING
+   ============================================================ */
+function renderLikert() {
+  const i = state.likertIndex;
+  const item = LIKERT[i];
+  const factor = FACTORS[item.factor];
+
+  document.getElementById('likert-current').textContent = i + 1;
+  document.getElementById('likert-factor').textContent = `${item.factor} · ${factor.name}`;
+  document.getElementById('likert-progress').style.transform = `scaleX(${(i + 1) / LIKERT.length})`;
+  document.getElementById('likert-back').disabled = (i === 0);
+
+  const html = `
+    <div class="fade-in" key="${i}">
+      <div class="question-num">${String(i + 1).padStart(2, '0')}<span class="total"> / 30</span></div>
+      <h2 class="question-text">${item.q}</h2>
+      <div class="likert">
+        ${[5,4,3,2,1].map(val => `
+          <button class="likert-option ${state.likertAnswers[i] === val ? 'selected' : ''}"
+                  onclick="selectLikert(${val})">
+            <span class="likert-num">${val}</span>
+            <span class="likert-label">${LIKERT_LABELS[val - 1]}</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('likert-content').innerHTML = html;
+}
+
+function selectLikert(val) {
+  state.likertAnswers[state.likertIndex] = val;
+  // brief visual confirmation, then advance
+  renderLikert();
+  setTimeout(() => {
+    if (state.likertIndex < LIKERT.length - 1) {
+      state.likertIndex++;
+      renderLikert();
+    } else {
+      // Move to ability test intro
+      showScreen('screen-ability-intro');
+    }
+  }, 280);
+}
+
+function likertBack() {
+  if (state.likertIndex > 0) {
+    state.likertIndex--;
+    renderLikert();
+  }
+}
+
+/* ============================================================
+   ABILITY TEST RENDERING
+   ============================================================ */
+function startAbility() {
+  state.abilityIndex = 0;
+  showScreen('screen-ability');
+  renderAbility();
+}
+
+function renderAbility() {
+  const i = state.abilityIndex;
+  const item = ABILITY[i];
+  const factor = FACTORS[item.factor];
+
+  document.getElementById('ability-current').textContent = i + 1;
+  document.getElementById('ability-factor').textContent = `${item.factor} · ${factor.name}`;
+  document.getElementById('ability-progress').style.transform = `scaleX(${(i + 1) / ABILITY.length})`;
+  document.getElementById('ability-back').disabled = (i === 0);
+
+  const html = `
+    <div class="fade-in" key="ab-${i}">
+      <div class="question-num">${String(i + 1).padStart(2, '0')}<span class="total"> / 06</span></div>
+      <h2 class="question-text question-text-small">${item.q}</h2>
+      <div class="choice">
+        ${item.choices.map((c, idx) => `
+          <button class="choice-option ${state.abilityAnswers[i] === idx ? 'selected' : ''}"
+                  onclick="selectAbility(${idx})">
+            <span class="choice-letter">${c.label}</span>
+            <span class="choice-text">${c.text}</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('ability-content').innerHTML = html;
+}
+
+function selectAbility(idx) {
+  state.abilityAnswers[state.abilityIndex] = idx;
+  renderAbility();
+  setTimeout(() => {
+    if (state.abilityIndex < ABILITY.length - 1) {
+      state.abilityIndex++;
+      renderAbility();
+    } else {
+      computeAndShowResult();
+    }
+  }, 280);
+}
+
+function abilityBack() {
+  if (state.abilityIndex > 0) {
+    state.abilityIndex--;
+    renderAbility();
+  }
+}
+
+/* ============================================================
+   SCORING
+   ============================================================ */
+function computeScores() {
+  const sums = { A:0, B:0, C:0, D:0, E:0, F:0 };
+  const counts = { A:0, B:0, C:0, D:0, E:0, F:0 };
+
+  LIKERT.forEach((item, i) => {
+    const raw = state.likertAnswers[i] || 3;  // default to neutral if missing
+    const score = item.reverse ? (6 - raw) : raw;
+    sums[item.factor] += score;
+    counts[item.factor]++;
+  });
+
+  const avgs = {};
+  Object.keys(sums).forEach(k => { avgs[k] = sums[k] / counts[k]; });
+
+  // ability tie-break: count "high" side picks per factor
+  const abilityBoost = { A:0, B:0, C:0, D:0, E:0, F:0 };
+  ABILITY.forEach((item, i) => {
+    const sel = state.abilityAnswers[i];
+    if (sel === null || sel === undefined) return;
+    const choice = item.choices[sel];
+    if (choice.side === 'high') abilityBoost[item.factor] += 0.1;
+  });
+
+  // For tie-breaking only, add tiny boost
+  const ranked = Object.keys(avgs).map(k => ({
+    key: k,
+    avg: avgs[k],
+    sortKey: avgs[k] + abilityBoost[k],
+  })).sort((a, b) => b.sortKey - a.sortKey);
+
+  return {
+    avgs,
+    sums,
+    ranked,
+    top1: ranked[0].key,
+    top2: ranked[1].key,
+  };
+}
+
+function getTypeCode(t1, t2) {
+  return [t1, t2].sort().join('');
+}
+
+/* ============================================================
+   RESULT RENDERING
+   ============================================================ */
+function computeAndShowResult() {
+  const scores = computeScores();
+  const code = getTypeCode(scores.top1, scores.top2);
+  const type = TYPES[code] || TYPES['BE'];
+
+  showScreen('screen-result');
+  renderResult(scores, code, type);
+}
+
+function renderResult(scores, code, type) {
+  const factorOrder = ['A','B','C','D','E','F'];
+  const topSet = new Set([scores.top1, scores.top2]);
+
+  const scoresHtml = factorOrder.map(k => {
+    const f = FACTORS[k];
+    const v = scores.avgs[k];
+    const pct = ((v - 1) / 4) * 100;
+    return `
+      <div class="score-row ${topSet.has(k) ? 'top' : ''}">
+        <span class="score-letter">${k}</span>
+        <div class="score-info">
+          <span class="score-name">${f.name}</span>
+          <span class="score-poles">${f.poles}</span>
+          <div class="score-bar"><div class="score-bar-fill" style="transform: scaleX(${pct/100})"></div></div>
+        </div>
+        <span class="score-value">${v.toFixed(1)}</span>
+      </div>
+    `;
+  }).join('');
+
+  const html = `
+    <div class="fade-in">
+      <div class="result-hero">
+        <div class="result-eyebrow">Your Marketing DNA</div>
+        <div class="result-code">${code}</div>
+        <h1 class="result-name">${type.name}</h1>
+        <p class="result-catch">${type.catch}</p>
+      </div>
+
+      <div class="scores">
+        <div class="scores-title">— 6因子スコア</div>
+        ${scoresHtml}
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label">DEFINITION / 定義</div>
+        <p class="detail-text">${type.def}</p>
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label">CHARACTERISTICS / 特徴</div>
+        <ul class="detail-list">
+          ${type.traits.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="dual-grid">
+        <div class="dual-block">
+          <div class="detail-label">STRENGTH / 強み</div>
+          <p class="dual-text">${type.strength}</p>
+        </div>
+        <div class="dual-block weak">
+          <div class="detail-label">WEAKNESS / 弱み</div>
+          <p class="dual-text">${type.weakness}</p>
+        </div>
+      </div>
+
+      <div class="dual-grid">
+        <div class="dual-block">
+          <div class="detail-label">得意領域</div>
+          <p class="dual-text">${type.goodArea}</p>
+        </div>
+        <div class="dual-block weak">
+          <div class="detail-label">不得意領域</div>
+          <p class="dual-text">${type.badArea}</p>
+        </div>
+      </div>
+
+      <div class="dual-grid">
+        <div class="dual-block">
+          <div class="detail-label">得意戦略</div>
+          <p class="dual-text">${type.goodStrategy}</p>
+        </div>
+        <div class="dual-block weak">
+          <div class="detail-label">不得意戦略</div>
+          <p class="dual-text">${type.badStrategy}</p>
+        </div>
+      </div>
+
+      <div class="dual-grid">
+        <div class="dual-block">
+          <div class="detail-label">得意メディア</div>
+          <p class="dual-text">${type.goodMedia}</p>
+        </div>
+        <div class="dual-block weak">
+          <div class="detail-label">不得意メディア</div>
+          <p class="dual-text">${type.badMedia}</p>
+        </div>
+      </div>
+
+      <div class="dual-grid">
+        <div class="dual-block">
+          <div class="detail-label">得意商品・サービス</div>
+          <p class="dual-text">${type.goodProduct}</p>
+        </div>
+        <div class="dual-block weak">
+          <div class="detail-label">不得意商品・サービス</div>
+          <p class="dual-text">${type.badProduct}</p>
+        </div>
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label">CUSTOMER PERSONA / 得意顧客</div>
+        <p class="detail-text" style="font-size: 14px; line-height: 1.9;">${type.persona}</p>
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label">SHADOW / 不得意顧客</div>
+        <p class="detail-text" style="font-size: 14px; line-height: 1.9; color: var(--ink-faint);">${type.shadow}</p>
+      </div>
+
+      <div class="strategy">
+        <div class="strategy-eyebrow">First Yen Strategy / 最初の一円戦略</div>
+        <h3 class="strategy-title">あなたが最初の売上を作るための、3ステップ。</h3>
+        ${type.steps.map((s, i) => `
+          <div class="step">
+            <span class="step-num">0${i+1}</span>
+            <div class="step-content">
+              <div class="step-title">${s.title}</div>
+              <div class="step-desc">${s.desc}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="share">
+        <div class="share-eyebrow">Share / シェア</div>
+        <h3 class="share-title">この診断を、仲間にも。</h3>
+        <p class="share-desc">あなたの周りの人にもDNAを発見してもらいましょう。</p>
+        <div class="share-buttons">
+          <button class="share-btn" id="share-link" onclick="shareApp()">
+            ⌘ リンクをコピー
+          </button>
+          <button class="share-btn" onclick="shareTwitter('${code}','${type.name}','${type.catch}')">
+            X で結果をシェア
+          </button>
+          <button class="share-btn" onclick="shareLine('${code}','${type.name}','${type.catch}')">
+            LINE で送る
+          </button>
+        </div>
+      </div>
+
+      <div class="restart-row">
+        <button class="restart-btn" onclick="if(confirm('もう一度診断を受けますか?')) startTest()">
+          ↺ もう一度診断する
+        </button>
+      </div>
+    </div>
+  `;
+  document.getElementById('result-content').innerHTML = html;
+
+  // animate score bars after a tick
+  setTimeout(() => {
+    document.querySelectorAll('.score-bar-fill').forEach(el => {
+      const t = el.style.transform;
+      el.style.transform = 'scaleX(0)';
+      requestAnimationFrame(() => {
+        el.style.transform = t;
+      });
+    });
+  }, 100);
+}
+
+/* ============================================================
+   SHARING
+   ============================================================ */
+function getShareUrl() {
+  // The app itself is shareable — use the page URL (without hash/query)
+  return window.location.href.split('#')[0].split('?')[0];
+}
+
+function shareApp() {
+  const url = getShareUrl();
+  if (navigator.share) {
+    navigator.share({
+      title: 'Marketing DNA Test',
+      text: 'あなたの「売れ方」を診断する、Marketing DNA Test™',
+      url,
+    }).catch(() => {});
+    return;
+  }
+  copyToClipboard(url, 'リンクをコピーしました');
+}
+
+function shareTwitter(code, name, catchphrase) {
+  const text = `Marketing DNA Test™ で診断したら、私は『${code}・${name}』タイプでした。\n「${catchphrase}」\n\nあなたの売れ方DNAも診断してみませんか?`;
+  const url = encodeURIComponent(getShareUrl());
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${url}`, '_blank');
+}
+
+function shareLine(code, name, catchphrase) {
+  const text = `Marketing DNA Test™ で診断したら、私は『${code}・${name}』タイプでした。\n「${catchphrase}」\n\nあなたも診断してみませんか?\n${getShareUrl()}`;
+  window.open(`https://line.me/R/msg/text/?${encodeURIComponent(text)}`, '_blank');
+}
+
+function copyToClipboard(text, msg) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(msg);
+      const btn = document.getElementById('share-link');
+      if (btn) {
+        btn.classList.add('copied');
+        const original = btn.innerHTML;
+        btn.innerHTML = '✓ コピー完了';
+        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = original; }, 2000);
+      }
+    });
+  } else {
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    showToast(msg);
+  }
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2400);
+}
+</script>
+</body>
+</html>
