@@ -33,7 +33,7 @@
 | 9 | フロントエンド実装(API統合) | Agent 9 | [x]（`sendResult()`実装・fetch統合完了。モックfetchでロジック検証済み。実機テストはPhase 10で実施） |
 | 10 | E2Eテスト | Agent 10 | [ ]（PCブラウザ自動E2E 8/8 Pass完了。LINE内ブラウザ実機テストはHiroさん実施待ち） |
 | 11 | ローカル動作確認 | Agent 11 | [ ] |
-| 12 | デプロイ | Agent 12 | [ ]（GitHub Pagesへの公開） |
+| 12 | デプロイ | Agent 12 | [x]（GitHub Pages公開完了。リポジトリはPublicに変更。公開URL等は`docs/DEPLOYMENT.md`参照。LINE実機テストはHiroさん実施待ち） |
 
 ### 画面管理表
 
@@ -51,7 +51,7 @@
 | サービス | アカウント | セットアップ |
 |---------|-----------|------------|
 | Google（Hiroさんの既存アカウント） | [x] 既存 | [x] スプレッドシート作成・GASプロジェクト作成・ウェブアプリデプロイ（`docs/DEPLOYMENT.md`参照） |
-| GitHub（Hiroさんの既存アカウント） | [x] 既存 | [x] リポジトリ作成（[ ] GitHub Pages有効化はPhase 12で実施） |
+| GitHub（Hiroさんの既存アカウント） | [x] 既存 | [x] リポジトリ作成・[x] GitHub Pages有効化（リポジトリはPublicに変更） |
 
 ---
 

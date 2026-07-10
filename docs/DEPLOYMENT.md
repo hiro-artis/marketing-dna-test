@@ -20,5 +20,8 @@
 
 ## GitHub Pages
 
-- リポジトリ: https://github.com/hiro-artis/marketing-dna-test（Private）
-- Pages公開: Phase 12で実施予定（未実施）
+- リポジトリ: https://github.com/hiro-artis/marketing-dna-test（**Public**。GitHub Pages有効化のためPrivateから変更。Public化前にAPIキー・スプレッドシートURL/ID・メールアドレス等の秘匿情報が含まれていないことを確認済み）
+- 公開URL: https://hiro-artis.github.io/marketing-dna-test/marketing_dna_test.html
+- 外部ブラウザ退避確認用リンク: https://hiro-artis.github.io/marketing-dna-test/marketing_dna_test.html?openExternalBrowser=1
+- 公開元: `main`ブランチ / ルート（`/`）
+- Pages公開: 完了（2026-07-10）
