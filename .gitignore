@@ -16,5 +16,8 @@ Thumbs.db
 # AppGenius temp
 .appgenius_temp/
 
+# Playwright MCP テスト成果物
+.playwright-mcp/
+
 # Logs
 *.log

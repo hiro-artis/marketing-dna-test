@@ -428,6 +428,26 @@ button {
   max-width: 480px;
 }
 
+/* === NAME INPUT === */
+.name-input-wrap {
+  margin: 8px 0 40px;
+}
+.name-input {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  padding: 16px 18px;
+  font-family: "Noto Serif JP", serif;
+  font-size: 17px;
+  color: var(--ink);
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  transition: border-color 0.25s ease;
+}
+.name-input::placeholder { color: var(--ink-faint); }
+.name-input:focus { outline: none; border-color: var(--accent); }
+
 /* === RESULT SCREEN === */
 .result-hero {
   padding: 24px 0 40px;
@@ -837,7 +857,7 @@ button {
         </div>
       </div>
 
-      <button class="btn btn-arrow" onclick="startTest()">
+      <button class="btn btn-arrow" onclick="goToNameScreen()">
         診断をはじめる
       </button>
 
@@ -846,6 +866,33 @@ button {
         ※ 直感で、お答えください。
       </p>
     </div>
+  </section>
+
+  <!-- ============= NAME INPUT ============= -->
+  <section id="screen-name" class="screen">
+    <div class="section-intro fade-in">
+      <div class="section-intro-eyebrow">Before You Begin</div>
+      <h2 class="section-intro-title">
+        お名前を教えてください。
+      </h2>
+      <p class="section-intro-desc">
+        本名でもニックネームでも構いません。結果を記録する際の目印として使用します。
+      </p>
+    </div>
+    <div class="name-input-wrap">
+      <input
+        type="text"
+        id="name-input"
+        class="name-input"
+        placeholder="お名前（ニックネームでも可）"
+        autocomplete="name"
+        oninput="onNameInput()"
+        onkeydown="if(event.key === 'Enter') submitName()"
+      >
+    </div>
+    <button class="btn btn-arrow" id="name-submit" onclick="submitName()" disabled>
+      診断をはじめる
+    </button>
   </section>
 
   <!-- ============= LIKERT SURVEY (30問) ============= -->
@@ -1379,10 +1426,12 @@ const TYPES = {
    STATE
    ============================================================ */
 let state = {
+  name: '',
   likertIndex: 0,
   likertAnswers: new Array(LIKERT.length).fill(null),
   abilityIndex: 0,
   abilityAnswers: new Array(ABILITY.length).fill(null),
+  sent: false,
 };
 
 /* ============================================================
@@ -1394,12 +1443,31 @@ function showScreen(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function startTest() {
+function goToNameScreen() {
+  document.getElementById('name-input').value = '';
+  document.getElementById('name-submit').disabled = true;
+  showScreen('screen-name');
+}
+
+function onNameInput() {
+  const val = document.getElementById('name-input').value.trim();
+  document.getElementById('name-submit').disabled = val === '';
+}
+
+function submitName() {
+  const val = document.getElementById('name-input').value.trim();
+  if (!val) return;
+  startTest(val);
+}
+
+function startTest(name) {
   state = {
+    name: name,
     likertIndex: 0,
     likertAnswers: new Array(LIKERT.length).fill(null),
     abilityIndex: 0,
     abilityAnswers: new Array(ABILITY.length).fill(null),
+    sent: false,
   };
   showScreen('screen-likert');
   renderLikert();
@@ -1569,8 +1637,41 @@ function computeAndShowResult() {
   const code = getTypeCode(scores.top1, scores.top2);
   const type = TYPES[code] || TYPES['BE'];
 
+  sendResult(state.name, scores, code, type);
+
   showScreen('screen-result');
   renderResult(scores, code, type);
+}
+
+/* ============================================================
+   RESULT SUBMISSION (GAS)
+   ============================================================ */
+const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxSDCo0qQHkpoGH5sSk8wJIrfEzPekB-LXCv85FVCgzbirz8mc3nxVd8IuKBjN9h6cn/exec';
+
+function sendResult(name, scores, code, type) {
+  if (state.sent) return;
+  state.sent = true;
+  fetch(GAS_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({
+      name: name,
+      A: scores.avgs.A, B: scores.avgs.B, C: scores.avgs.C,
+      D: scores.avgs.D, E: scores.avgs.E, F: scores.avgs.F,
+      top1: scores.top1, top2: scores.top2,
+      code: code, typeName: type.name,
+    }),
+  })
+    .then(function (res) { return res.json(); })
+    .then(function (json) {
+      if (json.result !== 'ok') showSendError();
+    })
+    .catch(function () { showSendError(); });
+}
+
+function showSendError() {
+  const el = document.getElementById('send-error-note');
+  if (el) el.style.display = 'block';
 }
 
 function renderResult(scores, code, type) {
@@ -1717,10 +1818,14 @@ function renderResult(scores, code, type) {
       </div>
 
       <div class="restart-row">
-        <button class="restart-btn" onclick="if(confirm('もう一度診断を受けますか?')) startTest()">
+        <button class="restart-btn" onclick="if(confirm('もう一度診断を受けますか?')) goToNameScreen()">
           ↺ もう一度診断する
         </button>
       </div>
+
+      <p id="send-error-note" style="display:none; font-size:13px; color:var(--ink-faint); margin-top:16px;">
+        ※結果の記録に失敗しました。この画面のスクリーンショットを管理者に送ってください。
+      </p>
     </div>
   `;
   document.getElementById('result-content').innerHTML = html;
