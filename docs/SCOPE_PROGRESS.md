@@ -32,7 +32,7 @@
 | 8 | バックエンド実装 | Agent 8 | [x]（Code.gs実装・デプロイはPhase 5で完了済み。詳細は`docs/DEPLOYMENT.md`） |
 | 9 | フロントエンド実装(API統合) | Agent 9 | [x]（`sendResult()`実装・fetch統合完了。モックfetchでロジック検証済み。実機テストはPhase 10で実施） |
 | 10 | E2Eテスト | Agent 10 | [x]（PCブラウザ自動E2E 8/8 Pass、LINE実機2/2 PassでHiroさん確認済み。実機テストで判明したGASコールドスタート失敗は1回リトライを追加して解消） |
-| 11 | ローカル動作確認 | Agent 11 | [ ] |
+| 11 | ローカル動作確認 | Agent 11 | [x]（`python3 -m http.server`でローカル配信し画面確認。修正指示なし、コンソールエラーはfavicon 404のみで機能影響なし） |
 | 12 | デプロイ | Agent 12 | [x]（GitHub Pages公開完了。リポジトリはPublicに変更。公開URL等は`docs/DEPLOYMENT.md`参照。LINE実機テストはHiroさん実施待ち） |
 
 ### 画面管理表
