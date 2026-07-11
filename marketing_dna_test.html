@@ -1651,22 +1651,36 @@ const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxSDCo0qQHkpoGH5sS
 function sendResult(name, scores, code, type) {
   if (state.sent) return;
   state.sent = true;
+  const payload = JSON.stringify({
+    name: name,
+    A: scores.avgs.A, B: scores.avgs.B, C: scores.avgs.C,
+    D: scores.avgs.D, E: scores.avgs.E, F: scores.avgs.F,
+    top1: scores.top1, top2: scores.top2,
+    code: code, typeName: type.name,
+  });
+  postResult(payload, true);
+}
+
+function postResult(payload, allowRetry) {
   fetch(GAS_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({
-      name: name,
-      A: scores.avgs.A, B: scores.avgs.B, C: scores.avgs.C,
-      D: scores.avgs.D, E: scores.avgs.E, F: scores.avgs.F,
-      top1: scores.top1, top2: scores.top2,
-      code: code, typeName: type.name,
-    }),
+    body: payload,
   })
     .then(function (res) { return res.json(); })
     .then(function (json) {
-      if (json.result !== 'ok') showSendError();
+      if (json.result !== 'ok') retryOrShowError(payload, allowRetry);
     })
-    .catch(function () { showSendError(); });
+    .catch(function () { retryOrShowError(payload, allowRetry); });
+}
+
+function retryOrShowError(payload, allowRetry) {
+  // GASのコールドスタートで初回送信が失敗することがあるため、3秒後に1回だけ再送する
+  if (allowRetry) {
+    setTimeout(function () { postResult(payload, false); }, 3000);
+  } else {
+    showSendError();
+  }
 }
 
 function showSendError() {
